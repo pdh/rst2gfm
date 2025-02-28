@@ -268,7 +268,7 @@ class MarkdownWriter(Writer):
         self.output = visitor.astext()
 
 
-def convert_rst_to_md(rst_content):
+def convert_rst_to_md(rst_content: str) -> str:
     """Convert reStructuredText to GitHub Flavored Markdown."""
     parts = publish_parts(
         source=rst_content,
