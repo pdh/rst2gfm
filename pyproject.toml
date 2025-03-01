@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rst2gfm"
-version = "0.1.1"
+version = "0.1.2"
 description = "A tool to convert reStructuredText to GitHub Flavored Markdown"
 readme = "README.md"
 authors = [
