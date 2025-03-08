@@ -148,7 +148,9 @@ class MarkdownTranslator(NodeVisitor):
         self.section_level -= 1
 
     def visit_subtitle(self, node):
-        """handle subtitle"""
+        """
+        handle subtitle
+        """
         self.output.append("## ")
         self.section_level += 1
 
