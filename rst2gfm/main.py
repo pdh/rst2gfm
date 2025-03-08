@@ -318,6 +318,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("`")
 
     def visit_bullet_list(self, node):
+        """
+        This method is used to visit a bullet list node in the AST and handle the necessary formatting for proper spacing between list items.
+        Params:
+            node Node: The current node in the AST being visited.
+        Returns:
+            None: This method does not return any value.
+        """
         self.list_depth += 1
         self.list_type.append("bullet")
 
