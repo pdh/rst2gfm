@@ -751,6 +751,13 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def visit_term(self, node):
+ """
+ Appends a newline followed by '**' to the output list.
+ Args:
+     node any: The node being visited.
+ Returns:
+     None: Modifies the output list in place and returns None.
+ """
         self.output.append("\n**")
 
     def depart_term(self, node):
