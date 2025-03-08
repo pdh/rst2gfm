@@ -253,6 +253,11 @@ class MarkdownTranslator(NodeVisitor):
         self.in_line_block = True
 
     def depart_line_block(self, node):
+        """
+        Clears the current line block and appends a double newline character to the output.
+        Params:
+            node Any: The node being processed, though it's not used within the method.
+        """
         self.in_line_block = False
         self.output.append("\n\n")
 
