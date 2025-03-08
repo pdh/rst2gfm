@@ -799,7 +799,13 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_admonition(self, node):
-        """Generic handler for admonition nodes."""
+        """
+        Generic handler for admonition nodes.
+        Args:
+            node node: The admonition node being processed.
+        Params:
+            node node: The admonition node being processed.
+        """
         self.output.append("\n> ")
 
         # Get admonition type from node class
