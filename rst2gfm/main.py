@@ -333,6 +333,13 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("\n")
 
     def depart_bullet_list(self, node):
+        """
+        Decreases the list depth and pops the current list type. Appends a newline to the output.
+        Args:
+            node any: The node parameter is not used in the method.
+        Returns:
+            None: The method does not return anything.
+        """
         self.list_depth -= 1
         self.list_type.pop()
         self.output.append("\n")
