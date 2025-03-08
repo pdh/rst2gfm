@@ -979,6 +979,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("$")
 
     def depart_math(self, node):
+        """
+        Removes duplicate content added by children and appends math content. Adds the closing delimiter '$' to the output.
+        Args:
+            node any: The node being processed.
+        """
         # Remove any duplicate content added by children
         if hasattr(self, "math_start"):
             # Keep only up to the $ delimiter
