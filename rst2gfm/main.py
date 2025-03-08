@@ -1074,6 +1074,13 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode
 
     def visit_comment(self, node):
+ """
+ This method is called when a comment node is encountered during the tree traversal. It raises a `SkipNode` exception to indicate that the comment node should be skipped.
+ Args:
+     node Node: The current node being visited.
+ Returns:
+     None: Raises a `SkipNode` exception.
+ """
         raise SkipNode
 
     def visit_system_message(self, node):
