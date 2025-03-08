@@ -769,6 +769,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("**\n")
 
     def visit_definition(self, node):
+ """
+ This method is responsible for appending a colon and a space to the output list.
+ """
         self.output.append(": ")
 
     def depart_definition(self, node):
