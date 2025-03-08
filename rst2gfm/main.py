@@ -945,6 +945,9 @@ class MarkdownTranslator(NodeVisitor):
         self.footnote_label_seen = False
 
     def depart_footnote(self, node):
+        """
+        This method is called when a footnote is departed. It sets the `in_footnote` attribute to False and appends two newline characters to the `output` list.
+        """
         self.in_footnote = False
         self.output.append("\n\n")
 
