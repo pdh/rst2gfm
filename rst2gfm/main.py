@@ -899,6 +899,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_important(self, node):
+ """
+ This method is responsible for appending an important message to the output list.
+ Params:
+     node Any: The node to visit and process.
+ """
         self.output.append("\n> **Important:** ")
 
     def depart_important(self, node):
