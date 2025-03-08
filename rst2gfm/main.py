@@ -119,7 +119,9 @@ class MarkdownTranslator(NodeVisitor):
  """
 
     def depart_document(self, node):
-        """depart document"""
+        """
+        Depart document by appending any pending reference definitions at the end.
+        """
         # Add any pending reference definitions at the end
         if self.pending_refs:
             self.output.append("\n\n")
