@@ -856,6 +856,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(f"\n> **Attention:** \n> {node.astext()}")
 
     def depart_attention(self, node):
+ """
+ Appends two newline characters to the output list.
+ Args:
+     node Node: The node to process.
+ """
         self.output.append("\n\n")
 
     def visit_caution(self, node):
