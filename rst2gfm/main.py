@@ -488,6 +488,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n```\n\n")
 
     def visit_table(self, node):
+        """
+        Visits a table node in the AST and sets up the necessary attributes to process the table.
+        Params:
+            node Node: The AST node representing the table.
+        """
         self.table_data = []
         self.in_table = True
         self.spans = []
