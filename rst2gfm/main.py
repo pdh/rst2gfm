@@ -817,6 +817,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(f"\n**{admonition_type.title()}:** ")
 
     def depart_admonition(self, node):
+ """
+ Removes an admonition from the document output.
+ Args:
+     node Node: The admonition node to be removed.
+ """
         self.output.append("\n\n")
 
     # Add specific handlers for common admonition types
