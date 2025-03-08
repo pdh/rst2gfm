@@ -966,7 +966,11 @@ class MarkdownTranslator(NodeVisitor):
             pass
 
     def visit_math(self, node):
-        """Handles inline math expressions."""
+        """
+        Handles inline math expressions.
+        Args:
+            node Node: The AST node representing the inline math expression.
+        """
         # Store the math content
         self.math_content = node.astext()
         # Mark the start position to replace content later
