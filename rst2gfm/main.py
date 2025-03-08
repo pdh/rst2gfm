@@ -517,6 +517,13 @@ class MarkdownTranslator(NodeVisitor):
             self.table_has_header = True
 
     def depart_table(self, node):
+            """
+            Converts the current table data to either GitHub Markdown or HTML format based on the complexity of the spans.
+            Params:
+                node object: The node containing the table data.
+            Returns:
+                none: This method does not return any value.
+            """
         if not self.table_data:
             return
 
