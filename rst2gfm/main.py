@@ -1068,6 +1068,9 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_substitution_definition(self, node):
+ """
+ This method is used to handle substitution definitions in the AST. It raises a SkipNode exception to indicate that further processing should be skipped for this node.
+ """
         raise SkipNode
 
     def visit_comment(self, node):
