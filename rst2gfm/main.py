@@ -99,7 +99,13 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(f"\n```{language}")
 
     def depart_directive(self, node):
-        """depart directive"""
+        """
+        Handles the departure of a directive in the document. Specifically, it checks if the current node is a code block and if so, it sets the in_code_block flag to False and appends a new code block delimiter to the output.
+        Params:
+            node Node: The current node being processed in the document.
+        Returns:
+            None: No value is returned.
+        """
         if node.tagname == "code-block" or (
             hasattr(node, "attributes")
             and "code-block" in node.attributes.get("classes", [])
