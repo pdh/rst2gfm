@@ -1099,6 +1099,9 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def unknown_departure(self, node):
+ """
+ This method is responsible for handling an unknown departure event.
+ """
         pass
 
 
