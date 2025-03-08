@@ -883,6 +883,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n> **Danger:** ")
 
     def depart_danger(self, node):
+ """
+ Appends two newline characters to the output list.
+ Args:
+     node Any: The node to be processed.
+ Returns:
+     None: This method does not return any value.
+ """
         self.output.append("\n\n")
 
     def visit_tip(self, node):
