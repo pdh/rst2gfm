@@ -683,6 +683,13 @@ class MarkdownTranslator(NodeVisitor):
             )
 
     def depart_entry(self, node):
+ """
+ Adds the current entry text to the current row and handles colspan if necessary.
+ Params:
+     node any: The node to depart entry for.
+ Returns:
+     void: None
+ """
         text = "".join(self.entry_text).replace("\n", "<br>").strip()
 
         # Add the cell to the current row
