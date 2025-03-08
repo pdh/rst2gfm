@@ -1144,7 +1144,9 @@ def convert_rst_to_md(rst_content: str) -> str:
 
 
 def main():
-    """Run the CLI"""
+    """
+    Run the CLI
+    """
     parser = argparse.ArgumentParser(
         description="Convert reStructuredText to GitHub Flavored Markdown"
     )
