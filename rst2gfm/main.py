@@ -405,6 +405,17 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("[")
 
     def depart_reference(self, node):
+            """
+            Handles the departure of a reference from the reference stack.
+            Args:
+                self object: The instance of the class.
+                node dict: The node containing reference information.
+            Params:
+                self object: The instance of the class.
+                node dict: The node containing reference information.
+            Returns:
+                None: This method does not return a value.
+            """
         if not self.reference_stack:
             return
 
