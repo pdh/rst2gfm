@@ -176,7 +176,9 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(f"{'#' * (self.section_level + 1)} ")
 
     def depart_title(self, node):
-        """handle title exit"""
+        """
+        handle title exit
+        """
         self.output.append("\n\n")
 
     def visit_paragraph(self, node):
