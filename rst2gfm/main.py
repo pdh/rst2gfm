@@ -711,6 +711,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n> ")
 
     def depart_block_quote(self, node):
+ """
+ This method is called to depart a block quote. It appends two newline characters to the output.
+ """
         self.output.append("\n\n")
 
     def visit_enumerated_list(self, node):
