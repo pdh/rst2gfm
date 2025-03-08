@@ -638,6 +638,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n" + "\n".join(html) + "\n\n")
 
     def visit_row(self, node):
+ """
+ Visits a row node and initializes the current row list.
+ Params:
+     node Node: The row node to be visited.
+ Returns:
+     None: None
+ """
         self.current_row = []
 
     def depart_row(self, node):
