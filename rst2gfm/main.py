@@ -293,6 +293,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("*")
 
     def depart_emphasis(self, node):
+ """
+ This method is responsible for appending an asterisk (*) to the output list, effectively exiting an emphasized text section.
+ Returns:
+     None: The method does not return any value.
+ """
         self.output.append("*")
 
     def visit_strong(self, node):
