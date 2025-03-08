@@ -345,6 +345,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n")
 
     def visit_list_item(self, node):
+        """
+        This method is responsible for visiting a list item in the abstract syntax tree (AST). It appends the appropriate list item marker to the output based on the current list depth and type. If the list type is 'bullet', it appends '- ', otherwise it appends '1. ' if the list type is 'enumerated'. If the list type is empty, it defaults to appending '- '.
+        Params:
+            node any: The current node in the AST being visited.
+        """
         indent = "  " * (self.list_depth - 1)
         ## Check if we have list_type (we should)
         if self.list_type and len(self.list_type) > 0:
