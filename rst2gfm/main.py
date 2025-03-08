@@ -163,7 +163,11 @@ class MarkdownTranslator(NodeVisitor):
         # self.section_level -= 1
 
     def visit_title(self, node):
-        """handle rst title"""
+        """
+        handle rst title
+        Args:
+            node node: The current AST node being processed.
+        """
         if self.in_table:
             # This is a table caption/title
             self.table_caption = node.astext()
