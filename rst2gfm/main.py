@@ -310,6 +310,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("`")
 
     def depart_literal(self, node):
+ """
+ Append the character backtick (`) to the output list.
+ Returns:
+     None: This method does not return anything.
+ """
         self.output.append("`")
 
     def visit_bullet_list(self, node):
