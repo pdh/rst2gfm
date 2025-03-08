@@ -733,6 +733,9 @@ class MarkdownTranslator(NodeVisitor):
         self.list_type.pop()
 
     def visit_definition_list(self, node):
+ """
+ Visits a definition list node in the Abstract Syntax Tree.
+ """
         pass
 
     def depart_definition_list(self, node):
