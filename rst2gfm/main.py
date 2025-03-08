@@ -364,6 +364,13 @@ class MarkdownTranslator(NodeVisitor):
         # Store the current position to track if we need to handle nested content
 
     def depart_list_item(self, node):
+        """
+        Removes any incorrect formatting that might have been added to a list item in the output.
+        Args:
+            node any: The node representing the list item to be processed.
+        Params:
+            node any: The node representing the list item to be processed.
+        """
         # Remove any incorrect formatting that might have been added
         if hasattr(self, "list_item_start"):
             content = "".join(self.output[self.list_item_start :])
