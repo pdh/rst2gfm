@@ -1115,6 +1115,11 @@ class MarkdownWriter(Writer):
         self.translator_class = MarkdownTranslator
 
     def translate(self):
+        """
+        Translates the document using the translator class.
+        Returns:
+            None: The method does not return any value.
+        """
         visitor = self.translator_class(self.document)
         self.document.walkabout(visitor)
         self.output = visitor.astext()
