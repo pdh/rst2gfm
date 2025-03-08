@@ -155,7 +155,9 @@ class MarkdownTranslator(NodeVisitor):
         self.section_level += 1
 
     def depart_subtitle(self, node):
-        """handle subtitle exit"""
+        """
+        handle subtitle exit
+        """
         self.output.append("\n\n")
         # TODO not sure if this section leveling is quite right
         # self.section_level -= 1
