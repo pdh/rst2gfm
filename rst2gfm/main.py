@@ -381,6 +381,13 @@ class MarkdownTranslator(NodeVisitor):
             delattr(self, "list_item_start")
 
     def visit_reference(self, node):
+ """
+ Adds a reference to the output with the text of the reference node.
+ Args:
+     node Node: The reference node to process.
+ Params:
+     self self: The instance of the class.
+ """
         self.reference_stack.append({"start": len(self.output), "text": node.astext()})
 
         # Determine reference type
