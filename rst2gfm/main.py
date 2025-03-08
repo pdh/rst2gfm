@@ -835,6 +835,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_warning(self, node):
+ """
+ This method is responsible for visiting a warning node in the AST and appending a formatted warning message to the output list.
+ Params:
+     node ast.WalkWarning: The warning node to be visited.
+ """
         self.output.append(f"\n> **Warning:** \n> {node.astext()}")
 
     def depart_warning(self, node):
