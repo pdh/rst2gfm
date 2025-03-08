@@ -114,7 +114,9 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("\n```\n\n")
 
     def visit_document(self, node):
-        """visit documents"""
+ """
+ This method is responsible for visiting documents. It should be updated to include specific details about the type of documents being visited and any actions taken during the visit.
+ """
 
     def depart_document(self, node):
         """depart document"""
