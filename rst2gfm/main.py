@@ -444,6 +444,13 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("]")
 
     def visit_literal_block(self, node):
+        """
+        This method processes a literal block node to determine the language and options for syntax highlighting.
+        Params:
+            node dict: The literal block node to be processed.
+        Returns:
+            None: This method does not return any value.
+        """
         self.in_code_block = True
         language = ""
         # Check for language in various attributes
