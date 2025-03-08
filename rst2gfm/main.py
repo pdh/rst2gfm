@@ -1087,6 +1087,13 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode
 
     def unknown_visit(self, node):
+        """
+        This method is a placeholder for unknown RST elements.
+        Params:
+            node object: The AST node representing the unknown RST element.
+        Returns:
+            None: No value is returned.
+        """
         # node_type = node.__class__.__name__
         # self.output.append(f"<!-- Unsupported RST element: {node_type} -->")
         pass
