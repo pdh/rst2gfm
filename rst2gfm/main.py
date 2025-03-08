@@ -775,6 +775,12 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(": ")
 
     def depart_definition(self, node):
+ """
+ Adds a newline character to the output list.
+ Args:
+     self object: The instance of the class.
+     node object: The node being processed.
+ """
         self.output.append("\n")
 
     def visit_role(self, node):
