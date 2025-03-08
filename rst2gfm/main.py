@@ -952,7 +952,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_label(self, node):
-        """Handle footnote labels."""
+        """
+        Handle footnote labels.
+        Params:
+            node unknown: The node to visit.
+        """
         if hasattr(self, "in_footnote") and self.in_footnote:
             # Skip the label in footnote definitions
             self.footnote_label_seen = True
