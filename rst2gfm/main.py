@@ -1028,6 +1028,11 @@ class MarkdownTranslator(NodeVisitor):
                 self.output.append(latex)
 
     def depart_displaymath(self, node):
+ """
+ This method appends a LaTeX displaymath delimiter to the output.
+ Args:
+     node object: The node object being processed.
+ """
         self.output.append("\n$$\n")
 
     def visit_target(self, node):
