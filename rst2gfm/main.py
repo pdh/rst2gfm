@@ -262,7 +262,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_line(self, node):
-        """Handle individual lines in a line block."""
+        """
+        Handle individual lines in a line block.
+        """
         # Get the original source text to preserve indentation
         text = node.astext()
         # Check if this line has indentation
