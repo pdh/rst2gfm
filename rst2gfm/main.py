@@ -130,7 +130,13 @@ class MarkdownTranslator(NodeVisitor):
                     self.output.append(f"[{ref_id}]: {self.refs_map[refname]}\n")
 
     def visit_section(self, node):
-        """visit section"""
+        """
+        visit section
+        Params:
+            node any: The node to be visited.
+        Returns:
+            void: No value is returned.
+        """
         self.section_level += 1
 
     def depart_section(self, node):
