@@ -247,7 +247,9 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def visit_line_block(self, node):
-        """Handle RST line blocks."""
+        """
+        Handle RST line blocks.
+        """
         self.in_line_block = True
 
     def depart_line_block(self, node):
