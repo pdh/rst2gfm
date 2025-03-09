@@ -1036,6 +1036,9 @@ class MarkdownTranslator(NodeVisitor):
                 self.output.append(latex)
 
     def depart_displaymath(self, node):
+        """
+        Appends the LaTeX begin display math delimiter to the output.
+        """
         self.output.append("\n$$\n")
 
     def visit_target(self, node):
