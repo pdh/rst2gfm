@@ -49,7 +49,13 @@ class MarkdownTranslator(NodeVisitor):
         self.math_start = 0
 
     def _make_anchor(self, ref_id):
-        """Convert RST reference ID to GitHub-compatible anchor."""
+        """
+        Convert RST reference ID to GitHub-compatible anchor.
+        Args:
+            ref_id str: The RST reference ID to be converted.
+        Returns:
+            str: The GitHub-compatible anchor.
+        """
         # GitHub lowercases anchors and replaces spaces with hyphens
         anchor = ref_id.lower().replace(" ", "-")
         # Remove special characters
