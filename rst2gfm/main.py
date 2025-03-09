@@ -1057,7 +1057,11 @@ class MarkdownTranslator(NodeVisitor):
                 self.refs_map[node["names"][0]] = node["refuri"]
 
     def visit_interpreted(self, node):
-        """Handle interpreted text roles."""
+        """
+        Handle interpreted text roles.
+        Params:
+            node Node: The AST node representing the interpreted text role.
+        """
         role_name = node.get("role")
         if role_name == "ref":
             # Extract the target from the node text
