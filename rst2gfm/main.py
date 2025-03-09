@@ -1097,6 +1097,9 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode
 
     def unknown_visit(self, node):
+        """
+        This method is intended to handle the visitation of an abstract syntax tree node, but it currently does nothing.
+        """
         # node_type = node.__class__.__name__
         # self.output.append(f"<!-- Unsupported RST element: {node_type} -->")
         pass
