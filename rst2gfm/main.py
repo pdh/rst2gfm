@@ -827,6 +827,13 @@ class MarkdownTranslator(NodeVisitor):
 
     # Add specific handlers for common admonition types
     def visit_note(self, node):
+        """
+        This method visits a note node in the AST and appends it to the output as a formatted note.
+        Params:
+            node Node: The note node to be visited.
+        Returns:
+            None: The method does not return anything.
+        """
         self.output.append(f"\n> **Note:** \n> {node.astext()}")
 
     def depart_note(self, node):
