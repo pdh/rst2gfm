@@ -820,6 +820,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(f"\n**{admonition_type.title()}:** ")
 
     def depart_admonition(self, node):
+        """
+        Appends a newline character twice to the output list.
+        """
         self.output.append("\n\n")
 
     # Add specific handlers for common admonition types
