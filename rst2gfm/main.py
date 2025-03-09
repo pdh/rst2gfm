@@ -733,6 +733,13 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def depart_definition_list(self, node):
+        """
+        Appends a newline character to the output.
+        Args:
+            node any: The node to process.
+        Returns:
+            None: This method does not return anything.
+        """
         self.output.append("\n")
 
     def visit_definition_list_item(self, node):
