@@ -294,6 +294,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("*")
 
     def visit_strong(self, node):
+        """
+        Visits a strong node and appends '**' to the output.
+        Params:
+            node Node: The strong node to visit.
+        Returns:
+            None: The method does not return any value.
+        """
         self.output.append("**")
 
     def depart_strong(self, node):
