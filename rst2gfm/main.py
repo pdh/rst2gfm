@@ -586,6 +586,13 @@ class MarkdownTranslator(NodeVisitor):
         self.in_table = False
 
     def _convert_to_html_table(self):
+        """
+        Converts the table data into an HTML table and appends it to the output.
+        Params:
+            self object: The instance of the class.
+        Returns:
+            None: None
+        """
         html = ["<table>"]
 
         # Add header row
