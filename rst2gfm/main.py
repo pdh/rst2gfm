@@ -143,7 +143,13 @@ class MarkdownTranslator(NodeVisitor):
         self.section_level += 1
 
     def depart_section(self, node):
-        """depart section"""
+        """
+        This method decreases the section level.
+        Params:
+            node Node: The node representing the section to be departed.
+        Returns:
+            None: This method does not return any value.
+        """
         self.section_level -= 1
 
     def visit_subtitle(self, node):
