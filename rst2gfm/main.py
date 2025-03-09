@@ -743,6 +743,14 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n")
 
     def visit_definition_list_item(self, node):
+        """
+        This method is intended to handle the visitation of a definition list item in a parsing tree.
+        Args:
+            self object: The instance of the class.
+            node object: The definition list item node to be visited.
+        Returns:
+            None: No value is returned.
+        """
         pass
 
     def depart_definition_list_item(self, node):
