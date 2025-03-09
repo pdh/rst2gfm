@@ -644,6 +644,11 @@ class MarkdownTranslator(NodeVisitor):
         self.current_row = []
 
     def depart_row(self, node):
+        """
+        Appends the current row to the table data.
+        Args:
+            node object: The node object to be processed.
+        """
         self.table_data.append(self.current_row)
 
     def visit_entry(self, node):
