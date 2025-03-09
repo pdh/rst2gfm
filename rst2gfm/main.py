@@ -1078,6 +1078,12 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode
 
     def visit_comment(self, node):
+        """
+        This method is called when a comment node is encountered in the AST. It raises a SkipNode exception to indicate that the node should be skipped during traversal.
+        Args:
+            self object: The instance of the ASTVisitor class.
+            node ast.AST: The comment node encountered in the AST.
+        """
         raise SkipNode
 
     def visit_system_message(self, node):
