@@ -9,7 +9,9 @@ from docutils.nodes import NodeVisitor, SkipNode
 
 
 class MarkdownTranslator(NodeVisitor):
-    """Translates reStructuredText nodes to GitHub Flavored Markdown."""
+    """
+    Translates reStructuredText nodes to GitHub Flavored Markdown.
+    """
     # pylint: disable=unused-argument
     # pylint: disable=missing-docstring disable=invalid-name
 
