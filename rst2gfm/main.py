@@ -343,6 +343,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n")
 
     def visit_list_item(self, node):
+        """
+        Visits a list item node and appends it to the output with appropriate indentation and list marker based on the list type.
+        Args:
+            node Any: The node to visit.
+        Yields:
+            None: None
+        """
         indent = "  " * (self.list_depth - 1)
         ## Check if we have list_type (we should)
         if self.list_type and len(self.list_type) > 0:
