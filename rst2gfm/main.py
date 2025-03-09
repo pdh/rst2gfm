@@ -858,6 +858,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_attention(self, node):
+        """
+        Visits an attention node and appends a formatted string to the output.
+        Params:
+            node Node: The attention node to be visited.
+        Returns:
+            None: None
+        """
         self.output.append(f"\n> **Attention:** \n> {node.astext()}")
 
     def depart_attention(self, node):
