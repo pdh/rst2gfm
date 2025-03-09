@@ -1109,7 +1109,9 @@ class MarkdownTranslator(NodeVisitor):
 
 
 class MarkdownWriter(Writer):
-    """Writer for converting reStructuredText to GitHub Flavored Markdown."""
+    """
+    Writer for converting reStructuredText to GitHub Flavored Markdown.
+    """
 
     def __init__(self):
         super().__init__()
