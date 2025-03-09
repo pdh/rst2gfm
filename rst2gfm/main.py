@@ -188,7 +188,14 @@ class MarkdownTranslator(NodeVisitor):
         """
 
     def depart_paragraph(self, node):
-        """handle rst paragraph exit"""
+        """
+        This method is responsible for handling the exit of an RST (ReStructuredText) paragraph. When an RST paragraph ends, it appends a double newline character to the output to ensure proper formatting in the generated document.
+        Args:
+            self object: The instance of the class.
+            node object: The node representing the RST paragraph being exited.
+        Returns:
+            None: This method does not return any value.
+        """
         self.output.append("\n\n")
 
     def visit_Text(self, node):
