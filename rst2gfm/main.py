@@ -509,6 +509,13 @@ class MarkdownTranslator(NodeVisitor):
 
     def depart_table(self, node):
         if not self.table_data:
+            """
+            This method processes the table data and converts it to either GitHub Markdown or HTML based on the complexity of the table spans.
+            Args:
+                node object: The node containing the table data to be processed.
+            Returns:
+                None: No value is returned. The method modifies the table data directly.
+            """
             return
 
         # Process spans and convert to GitHub Markdown or HTML
