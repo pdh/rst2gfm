@@ -73,7 +73,11 @@ class MarkdownTranslator(NodeVisitor):
         """Default visit method for all nodes."""
 
     def default_departure(self, node):
-        """Default departure method for all nodes."""
+        """
+        Default departure method for all nodes.
+        Args:
+            node node: The node for which the departure is being handled.
+        """
 
     def visit_directive(self, node):
         if node.tagname == "math":
