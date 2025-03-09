@@ -871,6 +871,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_caution(self, node):
+        """
+        Adds a caution message to the output.
+        """
         self.output.append("\n> **Caution:** ")
 
     def depart_caution(self, node):
