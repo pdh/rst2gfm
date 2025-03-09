@@ -679,6 +679,11 @@ class MarkdownTranslator(NodeVisitor):
             )
 
     def depart_entry(self, node):
+        """
+        Depart an entry from the current row by converting it to HTML and adding it to the row. If colspan is set, empty cells are added to account for it.
+        Args:
+            node any: The node to depart from the entry.
+        """
         text = "".join(self.entry_text).replace("\n", "<br>").strip()
 
         # Add the cell to the current row
