@@ -16,6 +16,11 @@ class MarkdownTranslator(NodeVisitor):
     # pylint: disable=missing-docstring disable=invalid-name
 
     def __init__(self, document):
+        """
+        The `__init__` method initializes a new instance of the class with a document. It sets up various attributes to manage the parsing and processing of the document.
+        Args:
+            document any: The document to be processed.
+        """
         super().__init__(document)
         self.output = []
         self.list_depth = 0
