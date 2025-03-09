@@ -652,6 +652,13 @@ class MarkdownTranslator(NodeVisitor):
         self.table_data.append(self.current_row)
 
     def visit_entry(self, node):
+        """
+        This method is responsible for visiting an entry node and processing its span information.
+        Params:
+            node dict: The entry node dictionary containing various attributes.
+        Returns:
+            None: This method does not return any value.
+        """
         self.entry_text = []
 
         # Track spans
