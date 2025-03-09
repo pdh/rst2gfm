@@ -1087,6 +1087,13 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode
 
     def visit_system_message(self, node):
+        """
+        This method is used to visit a system message node and should raise a SkipNode exception.
+        Args:
+            node SystemMessageNode: The system message node being visited.
+        Returns:
+            None: This method does not return any value.
+        """
         raise SkipNode
 
     def unknown_visit(self, node):
