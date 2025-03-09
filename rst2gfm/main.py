@@ -318,6 +318,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("`")
 
     def visit_bullet_list(self, node):
+        """
+        Visits a bullet list node and updates the list depth and type.
+        Args:
+            node object: The AST node representing the bullet list.
+        """
         self.list_depth += 1
         self.list_type.append("bullet")
 
