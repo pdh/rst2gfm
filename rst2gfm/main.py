@@ -470,6 +470,9 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(f"\n# {', '.join(options)}")
 
     def depart_literal_block(self, node):
+        """
+        This method is responsible for departing from a literal block in the document and appending a closing code block marker to the output.
+        """
         self.in_code_block = False
         self.output.append("\n```\n\n")
 
