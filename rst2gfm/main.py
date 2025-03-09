@@ -787,7 +787,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n")
 
     def visit_role(self, node):
-        """Handle roles like :ref:"""
+        """
+        Handle roles like :ref:
+        Args:
+            node Node: The AST node representing the role.
+        """
         role_name = node.get("name")
         if role_name == "ref":
             # This is a reference to an internal target
