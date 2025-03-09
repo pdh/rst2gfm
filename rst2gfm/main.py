@@ -432,6 +432,11 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("]")
 
     def visit_literal_block(self, node):
+        """
+        Visits a literal block node in the AST and formats it as a code block in Markdown, potentially with language syntax highlighting and line number options.
+        Args:
+            node dict: The node representing the literal block in the AST.
+        """
         self.in_code_block = True
         language = ""
         # Check for language in various attributes
