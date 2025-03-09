@@ -224,7 +224,11 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(text)
 
     def visit_image(self, node):
-        """handle rst image"""
+        """
+        handle rst image
+        Args:
+            node dict: The dictionary representing the image node.
+        """
         uri = node.get("uri", "")
         alt = node.get("alt", "")
 
