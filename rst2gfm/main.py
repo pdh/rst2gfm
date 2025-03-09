@@ -767,6 +767,12 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n**")
 
     def depart_term(self, node):
+        """
+        Appends '**
+' to the output list.
+        Args:
+            node any: The node object being processed.
+        """
         self.output.append("**\n")
 
     def visit_definition(self, node):
