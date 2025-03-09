@@ -902,6 +902,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_important(self, node):
+        """
+        This method is called when visiting an important node in the Abstract Syntax Tree. It appends a formatted string indicating the importance of the node to the output list.
+        """
         self.output.append("\n> **Important:** ")
 
     def depart_important(self, node):
