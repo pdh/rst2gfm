@@ -930,7 +930,13 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode()
 
     def visit_footnote(self, node):
-        """Handle the footnote definition."""
+        """
+        Handle the footnote definition.
+        Params:
+            node Node: The node representing the footnote definition.
+        Returns:
+            None: This method does not return any value.
+        """
         # Extract the footnote ID
         footnote_id = node.get("names", [""])[0]
         if not footnote_id:
