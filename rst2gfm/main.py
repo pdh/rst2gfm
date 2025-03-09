@@ -183,7 +183,9 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_paragraph(self, node):
-        """handle rst paragraph"""
+        """
+        handle rst paragraph
+        """
 
     def depart_paragraph(self, node):
         """handle rst paragraph exit"""
