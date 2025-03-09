@@ -253,6 +253,11 @@ class MarkdownTranslator(NodeVisitor):
         self.in_line_block = True
 
     def depart_line_block(self, node):
+        """
+        This method is responsible for departing from a line block by setting the `in_line_block` attribute to False and appending two newline characters to the `output` list.
+        Params:
+            node any: The node representing the line block to depart from.
+        """
         self.in_line_block = False
         self.output.append("\n\n")
 
