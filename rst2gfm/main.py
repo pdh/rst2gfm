@@ -1006,6 +1006,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(node.astext())
 
     def depart_math_block(self, node):
+        """
+        Append a closing delimiter for a math block to the output.
+        Params:
+            node object: The node representing the math block.
+        """
         self.output.append("\n$$\n")
 
     def visit_displaymath(self, node):
