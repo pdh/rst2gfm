@@ -477,6 +477,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n```\n\n")
 
     def visit_table(self, node):
+        """
+        This method is responsible for visiting a table node in the AST and processing its attributes to determine the table type and whether it has a header.
+        Args:
+            node dict: A dictionary representing the AST node of the table.
+        Returns:
+            void: This method does not return any value.
+        """
         self.table_data = []
         self.in_table = True
         self.spans = []
