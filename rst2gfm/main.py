@@ -199,7 +199,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_Text(self, node):
-        """handle rst Text"""
+        """
+        handle rst Text
+        Args:
+            node Any: The node being visited.
+        """
         text = node.astext()
 
         # Check for :ref: pattern
