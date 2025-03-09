@@ -283,6 +283,11 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def visit_emphasis(self, node):
+        """
+        Adds an asterisk (*) to the output list.
+        Params:
+            node any: The node to visit.
+        """
         self.output.append("*")
 
     def depart_emphasis(self, node):
