@@ -911,7 +911,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_footnote_reference(self, node):
-        """Handle footnote references in the text."""
+        """
+        Handle footnote references in the text.
+        Args:
+            node Node: The AST node representing the footnote reference.
+        """
         # Extract the reference ID
         refid = node.astext()
 
