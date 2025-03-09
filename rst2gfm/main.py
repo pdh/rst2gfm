@@ -1124,7 +1124,13 @@ class MarkdownWriter(Writer):
 
 
 def convert_rst_to_md(rst_content: str) -> str:
-    """Convert reStructuredText to GitHub Flavored Markdown."""
+    """
+    Convert reStructuredText to GitHub Flavored Markdown.
+    Args:
+        rst_content str: The reStructuredText content to be converted.
+    Returns:
+        str: The converted GitHub Flavored Markdown content.
+    """
     parts = publish_parts(
         source=rst_content,
         writer=MarkdownWriter(),
