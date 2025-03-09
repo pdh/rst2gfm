@@ -9,11 +9,18 @@ from docutils.nodes import NodeVisitor, SkipNode
 
 
 class MarkdownTranslator(NodeVisitor):
-    """Translates reStructuredText nodes to GitHub Flavored Markdown."""
+    """
+    Translates reStructuredText nodes to GitHub Flavored Markdown.
+    """
     # pylint: disable=unused-argument
     # pylint: disable=missing-docstring disable=invalid-name
 
     def __init__(self, document):
+        """
+        The `__init__` method initializes a new instance of the class with a document. It sets up various attributes to manage the parsing and processing of the document.
+        Args:
+            document any: The document to be processed.
+        """
         super().__init__(document)
         self.output = []
         self.list_depth = 0
@@ -42,7 +49,13 @@ class MarkdownTranslator(NodeVisitor):
         self.math_start = 0
 
     def _make_anchor(self, ref_id):
-        """Convert RST reference ID to GitHub-compatible anchor."""
+        """
+        Convert RST reference ID to GitHub-compatible anchor.
+        Args:
+            ref_id str: The RST reference ID to be converted.
+        Returns:
+            str: The GitHub-compatible anchor.
+        """
         # GitHub lowercases anchors and replaces spaces with hyphens
         anchor = ref_id.lower().replace(" ", "-")
         # Remove special characters
@@ -60,7 +73,11 @@ class MarkdownTranslator(NodeVisitor):
         """Default visit method for all nodes."""
 
     def default_departure(self, node):
-        """Default departure method for all nodes."""
+        """
+        Default departure method for all nodes.
+        Args:
+            node node: The node for which the departure is being handled.
+        """
 
     def visit_directive(self, node):
         if node.tagname == "math":
@@ -93,7 +110,11 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(f"\n```{language}")
 
     def depart_directive(self, node):
-        """depart directive"""
+        """
+        Process the departure of a directive in the document.
+        Args:
+            node DirectiveNode: The directive node being processed.
+        """
         if node.tagname == "code-block" or (
             hasattr(node, "attributes")
             and "code-block" in node.attributes.get("classes", [])
@@ -114,26 +135,42 @@ class MarkdownTranslator(NodeVisitor):
                     self.output.append(f"[{ref_id}]: {self.refs_map[refname]}\n")
 
     def visit_section(self, node):
-        """visit section"""
+        """
+        This method is used to visit a section, increasing the section level.
+        Args:
+            node Any: The section node to visit.
+        """
         self.section_level += 1
 
     def depart_section(self, node):
-        """depart section"""
+        """
+        This method decreases the section level.
+        Params:
+            node Node: The node representing the section to be departed.
+        Returns:
+            None: This method does not return any value.
+        """
         self.section_level -= 1
 
     def visit_subtitle(self, node):
-        """handle subtitle"""
+        """
+        handle subtitle
+        """
         self.output.append("## ")
         self.section_level += 1
 
     def depart_subtitle(self, node):
-        """handle subtitle exit"""
+        """
+        handle subtitle exit
+        """
         self.output.append("\n\n")
         # TODO not sure if this section leveling is quite right
         # self.section_level -= 1
 
     def visit_title(self, node):
-        """handle rst title"""
+        """
+        handle rst title
+        """
         if self.in_table:
             # This is a table caption/title
             self.table_caption = node.astext()
@@ -146,14 +183,27 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_paragraph(self, node):
-        """handle rst paragraph"""
+        """
+        handle rst paragraph
+        """
 
     def depart_paragraph(self, node):
-        """handle rst paragraph exit"""
+        """
+        This method is responsible for handling the exit of an RST (ReStructuredText) paragraph. When an RST paragraph ends, it appends a double newline character to the output to ensure proper formatting in the generated document.
+        Args:
+            self object: The instance of the class.
+            node object: The node representing the RST paragraph being exited.
+        Returns:
+            None: This method does not return any value.
+        """
         self.output.append("\n\n")
 
     def visit_Text(self, node):
-        """handle rst Text"""
+        """
+        handle rst Text
+        Args:
+            node Any: The node being visited.
+        """
         text = node.astext()
 
         # Check for :ref: pattern
@@ -174,7 +224,11 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(text)
 
     def visit_image(self, node):
-        """handle rst image"""
+        """
+        handle rst image
+        Args:
+            node dict: The dictionary representing the image node.
+        """
         uri = node.get("uri", "")
         alt = node.get("alt", "")
 
@@ -199,6 +253,11 @@ class MarkdownTranslator(NodeVisitor):
         self.in_line_block = True
 
     def depart_line_block(self, node):
+        """
+        This method is responsible for departing from a line block by setting the `in_line_block` attribute to False and appending two newline characters to the `output` list.
+        Params:
+            node any: The node representing the line block to depart from.
+        """
         self.in_line_block = False
         self.output.append("\n\n")
 
@@ -224,12 +283,24 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def visit_emphasis(self, node):
+        """
+        Adds an asterisk (*) to the output list.
+        Params:
+            node any: The node to visit.
+        """
         self.output.append("*")
 
     def depart_emphasis(self, node):
         self.output.append("*")
 
     def visit_strong(self, node):
+        """
+        Visits a strong node and appends '**' to the output.
+        Params:
+            node Node: The strong node to visit.
+        Returns:
+            None: The method does not return any value.
+        """
         self.output.append("**")
 
     def depart_strong(self, node):
@@ -239,9 +310,19 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("`")
 
     def depart_literal(self, node):
+        """
+        Appends a backtick (`) to the output.
+        Args:
+            node any: The node to process.
+        """
         self.output.append("`")
 
     def visit_bullet_list(self, node):
+        """
+        Visits a bullet list node and updates the list depth and type.
+        Args:
+            node object: The AST node representing the bullet list.
+        """
         self.list_depth += 1
         self.list_type.append("bullet")
 
@@ -250,11 +331,25 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("\n")
 
     def depart_bullet_list(self, node):
+        """
+        Decreases the current list depth and pops the last list type from the stack, then appends a newline character to the output.
+        Args:
+            node any: The node parameter is not used within the method, it appears to be a placeholder or documentation error.
+        Returns:
+            None: The method does not return any value.
+        """
         self.list_depth -= 1
         self.list_type.pop()
         self.output.append("\n")
 
     def visit_list_item(self, node):
+        """
+        Visits a list item node and appends it to the output with appropriate indentation and list marker based on the list type.
+        Args:
+            node Any: The node to visit.
+        Yields:
+            None: None
+        """
         indent = "  " * (self.list_depth - 1)
         ## Check if we have list_type (we should)
         if self.list_type and len(self.list_type) > 0:
@@ -269,6 +364,13 @@ class MarkdownTranslator(NodeVisitor):
         # Store the current position to track if we need to handle nested content
 
     def depart_list_item(self, node):
+        """
+        Removes any incorrect formatting that might have been added to a list item and cleans up the content by removing unwanted bold markers or colons.
+        Args:
+            node any: The node representing the list item to be processed.
+        Returns:
+            void: The method does not return any value.
+        """
         # Remove any incorrect formatting that might have been added
         if hasattr(self, "list_item_start"):
             content = "".join(self.output[self.list_item_start :])
@@ -279,6 +381,12 @@ class MarkdownTranslator(NodeVisitor):
             delattr(self, "list_item_start")
 
     def visit_reference(self, node):
+        """
+        This method is called when a reference node is visited.
+        Args:
+            self object: The instance of the class.
+            node node: The reference node being visited.
+        """
         self.reference_stack.append({"start": len(self.output), "text": node.astext()})
 
         # Determine reference type
@@ -324,6 +432,11 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append("]")
 
     def visit_literal_block(self, node):
+        """
+        Visits a literal block node in the AST and formats it as a code block in Markdown, potentially with language syntax highlighting and line number options.
+        Args:
+            node dict: The node representing the literal block in the AST.
+        """
         self.in_code_block = True
         language = ""
         # Check for language in various attributes
@@ -357,10 +470,20 @@ class MarkdownTranslator(NodeVisitor):
             self.output.append(f"\n# {', '.join(options)}")
 
     def depart_literal_block(self, node):
+        """
+        This method is responsible for departing from a literal block in the document and appending a closing code block marker to the output.
+        """
         self.in_code_block = False
         self.output.append("\n```\n\n")
 
     def visit_table(self, node):
+        """
+        This method is responsible for visiting a table node in the AST and processing its attributes to determine the table type and whether it has a header.
+        Args:
+            node dict: A dictionary representing the AST node of the table.
+        Returns:
+            void: This method does not return any value.
+        """
         self.table_data = []
         self.in_table = True
         self.spans = []
@@ -385,6 +508,13 @@ class MarkdownTranslator(NodeVisitor):
             self.table_has_header = True
 
     def depart_table(self, node):
+        """
+        This method processes the table data and converts it to either GitHub Markdown or HTML based on the complexity of the table spans.
+        Args:
+            node object: The node containing the table data to be processed.
+        Returns:
+            None: No value is returned. The method modifies the table data directly.
+        """
         if not self.table_data:
             return
 
@@ -399,6 +529,11 @@ class MarkdownTranslator(NodeVisitor):
             self._convert_to_markdown_table()
 
     def _convert_to_markdown_table(self):
+        """
+        Converts table data into a markdown formatted table.
+        Returns:
+            None: The method does not return any value.
+        """
         # Process table data into markdown table
         col_count = max(len(row) for row in self.table_data)
 
@@ -451,6 +586,13 @@ class MarkdownTranslator(NodeVisitor):
         self.in_table = False
 
     def _convert_to_html_table(self):
+        """
+        Converts the table data into an HTML table and appends it to the output.
+        Params:
+            self object: The instance of the class.
+        Returns:
+            None: None
+        """
         html = ["<table>"]
 
         # Add header row
@@ -502,9 +644,21 @@ class MarkdownTranslator(NodeVisitor):
         self.current_row = []
 
     def depart_row(self, node):
+        """
+        Appends the current row to the table data.
+        Args:
+            node object: The node object to be processed.
+        """
         self.table_data.append(self.current_row)
 
     def visit_entry(self, node):
+        """
+        This method is responsible for visiting an entry node and processing its span information.
+        Params:
+            node dict: The entry node dictionary containing various attributes.
+        Returns:
+            None: This method does not return any value.
+        """
         self.entry_text = []
 
         # Track spans
@@ -525,6 +679,11 @@ class MarkdownTranslator(NodeVisitor):
             )
 
     def depart_entry(self, node):
+        """
+        Depart an entry from the current row by converting it to HTML and adding it to the row. If colspan is set, empty cells are added to account for it.
+        Args:
+            node any: The node to depart from the entry.
+        """
         text = "".join(self.entry_text).replace("\n", "<br>").strip()
 
         # Add the cell to the current row
@@ -537,6 +696,11 @@ class MarkdownTranslator(NodeVisitor):
         self.entry_text = None
 
     def visit_transition(self, node):
+        """
+        This method is responsible for handling the transition of a node in the tree. It appends a separator to the output list.
+        Params:
+            node object: The node object representing the current node in the tree.
+        """
         self.output.append("\n---\n\n")
 
     def depart_transition(self, node):
@@ -553,6 +717,14 @@ class MarkdownTranslator(NodeVisitor):
         self.list_type.append("enumerated")
 
     def depart_enumerated_list(self, node):
+        """
+        This method decreases the list depth and appends a newline character to the output, then pops the last item from the list type stack.
+        Params:
+            self object: The instance of the class.
+            node object: The current node being processed.
+        Returns:
+            None: The method does not return any value.
+        """
         self.list_depth -= 1
         self.output.append("\n")
         self.list_type.pop()
@@ -561,28 +733,64 @@ class MarkdownTranslator(NodeVisitor):
         pass
 
     def depart_definition_list(self, node):
+        """
+        Appends a newline character to the output.
+        Args:
+            node any: The node to process.
+        Returns:
+            None: This method does not return anything.
+        """
         self.output.append("\n")
 
     def visit_definition_list_item(self, node):
+        """
+        This method is intended to handle the visitation of a definition list item in a parsing tree.
+        Args:
+            self object: The instance of the class.
+            node object: The definition list item node to be visited.
+        Returns:
+            None: No value is returned.
+        """
         pass
 
     def depart_definition_list_item(self, node):
         pass
 
     def visit_term(self, node):
+        """
+        Append a newline followed by double asterisks to the output list.
+        Args:
+            node any: The node being processed.
+        Returns:
+            None: No value is returned.
+        """
         self.output.append("\n**")
 
     def depart_term(self, node):
+        """
+        Closes dictionary term, appends '**' to the output list.
+        Args:
+            node any: The node object being processed.
+        """
         self.output.append("**\n")
 
     def visit_definition(self, node):
         self.output.append(": ")
 
     def depart_definition(self, node):
+        """
+        This method is responsible for appending a newline character to the output list.
+        Args:
+            node any: The node to process (not used in the current implementation).
+        """
         self.output.append("\n")
 
     def visit_role(self, node):
-        """Handle roles like :ref:"""
+        """
+        Handle roles like :ref:
+        Args:
+            node Node: The AST node representing the role.
+        """
         role_name = node.get("name")
         if role_name == "ref":
             # This is a reference to an internal target
@@ -593,7 +801,13 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_admonition(self, node):
-        """Generic handler for admonition nodes."""
+        """
+        This method is a generic handler for admonition nodes. It processes the node to append a formatted string to the output list, including the type of admonition in bold.
+        Args:
+            node object: The admonition node to be processed.
+        Returns:
+            None: The method does not return anything. It appends a formatted string to the `self.output` list.
+        """
         self.output.append("\n> ")
 
         # Get admonition type from node class
@@ -605,53 +819,102 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(f"\n**{admonition_type.title()}:** ")
 
     def depart_admonition(self, node):
+        """
+        Appends a newline character twice to the output list.
+        """
         self.output.append("\n\n")
 
     # Add specific handlers for common admonition types
     def visit_note(self, node):
+        """
+        This method visits a note node in the AST and appends it to the output as a formatted note.
+        Params:
+            node Node: The note node to be visited.
+        Returns:
+            None: The method does not return anything.
+        """
         self.output.append(f"\n> **Note:** \n> {node.astext()}")
 
     def depart_note(self, node):
         self.output.append("\n\n")
 
     def visit_warning(self, node):
+        """
+        Visits a warning node and appends it to the output list with a formatted warning message.
+        Args:
+            node Node: The warning node to be visited.
+        Returns:
+            None: This method does not return anything.
+        """
         self.output.append(f"\n> **Warning:** \n> {node.astext()}")
 
     def depart_warning(self, node):
+        """
+        This method appends a new section to the output list.
+        Args:
+            node Node: The node that triggered the warning.
+        """
         self.output.append("\n\n")
 
     def visit_attention(self, node):
+        """
+        Visits an attention node and appends a formatted string to the output.
+        Params:
+            node Node: The attention node to be visited.
+        Returns:
+            None: None
+        """
         self.output.append(f"\n> **Attention:** \n> {node.astext()}")
 
     def depart_attention(self, node):
         self.output.append("\n\n")
 
     def visit_caution(self, node):
+        """
+        Adds a caution message to the output.
+        """
         self.output.append("\n> **Caution:** ")
 
     def depart_caution(self, node):
         self.output.append("\n\n")
 
     def visit_danger(self, node):
+        """
+        This method is used to add a danger warning to the output.
+        Args:
+            node Node: The node to be processed.
+        """
         self.output.append("\n> **Danger:** ")
 
     def depart_danger(self, node):
         self.output.append("\n\n")
 
     def visit_tip(self, node):
+        """
+        Adds a formatted tip to the output list.
+        Yields:
+            None: This function does not yield any value.
+        """
         self.output.append("\n> **Tip:** ")
 
     def depart_tip(self, node):
         self.output.append("\n\n")
 
     def visit_important(self, node):
+        """
+        This method is called when visiting an important node in the Abstract Syntax Tree. It appends a formatted string indicating the importance of the node to the output list.
+        """
         self.output.append("\n> **Important:** ")
 
     def depart_important(self, node):
         self.output.append("\n\n")
 
     def visit_footnote_reference(self, node):
-        """Handle footnote references in the text."""
+        """
+        Handle footnote references in the text.
+        Args:
+            node Node: The AST node representing the footnote reference.
+        """
         # Extract the reference ID
         refid = node.astext()
 
@@ -666,7 +929,13 @@ class MarkdownTranslator(NodeVisitor):
         raise SkipNode()
 
     def visit_footnote(self, node):
-        """Handle the footnote definition."""
+        """
+        Handle the footnote definition.
+        Params:
+            node Node: The node representing the footnote definition.
+        Returns:
+            None: This method does not return any value.
+        """
         # Extract the footnote ID
         footnote_id = node.get("names", [""])[0]
         if not footnote_id:
@@ -684,6 +953,9 @@ class MarkdownTranslator(NodeVisitor):
         self.footnote_label_seen = False
 
     def depart_footnote(self, node):
+        """
+        Resets the footnote flag and appends a newline to the output.
+        """
         self.in_footnote = False
         self.output.append("\n\n")
 
@@ -698,7 +970,9 @@ class MarkdownTranslator(NodeVisitor):
             pass
 
     def visit_math(self, node):
-        """Handles inline math expressions."""
+        """
+        Handles inline math expressions.
+        """
         # Store the math content
         self.math_content = node.astext()
         # Mark the start position to replace content later
@@ -707,6 +981,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("$")
 
     def depart_math(self, node):
+        """
+        Remove any duplicate content added by children and add the math content.
+        Args:
+            node any: The node to process.
+        """
         # Remove any duplicate content added by children
         if hasattr(self, "math_start"):
             # Keep only up to the $ delimiter
@@ -726,10 +1005,21 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append(node.astext())
 
     def depart_math_block(self, node):
+        """
+        Append a closing delimiter for a math block to the output.
+        Params:
+            node object: The node representing the math block.
+        """
         self.output.append("\n$$\n")
 
     def visit_displaymath(self, node):
-        """Handles Sphinx displaymath node."""
+        """
+        Handles Sphinx displaymath node.
+        Args:
+            node Node: The Sphinx displaymath node to process.
+        Returns:
+            None: None
+        """
         self.output.append("\n$$\n")
         if node.get("nowrap", False):
             # No wrapping - output as is
@@ -745,9 +1035,17 @@ class MarkdownTranslator(NodeVisitor):
                 self.output.append(latex)
 
     def depart_displaymath(self, node):
+        """
+        Appends the LaTeX begin display math delimiter to the output.
+        """
         self.output.append("\n$$\n")
 
     def visit_target(self, node):
+        """
+        Visits a target node and processes it based on whether it is an anchor target or a reference definition.
+        Args:
+            node dict: The target node to visit.
+        """
         if "refid" in node:
             # This is an anchor target
             anchor = self._make_anchor(node["refid"])
@@ -758,7 +1056,11 @@ class MarkdownTranslator(NodeVisitor):
                 self.refs_map[node["names"][0]] = node["refuri"]
 
     def visit_interpreted(self, node):
-        """Handle interpreted text roles."""
+        """
+        Handle interpreted text roles.
+        Params:
+            node Node: The AST node representing the interpreted text role.
+        """
         role_name = node.get("role")
         if role_name == "ref":
             # Extract the target from the node text
@@ -769,15 +1071,34 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_substitution_definition(self, node):
+        """
+        This method is called when visiting a substitution definition node. It raises a SkipNode exception to indicate that the node should be skipped.
+        """
         raise SkipNode
 
     def visit_comment(self, node):
+        """
+        This method is called when a comment node is encountered in the AST. It raises a SkipNode exception to indicate that the node should be skipped during traversal.
+        Args:
+            self object: The instance of the ASTVisitor class.
+            node ast.AST: The comment node encountered in the AST.
+        """
         raise SkipNode
 
     def visit_system_message(self, node):
+        """
+        This method is used to visit a system message node and should raise a SkipNode exception.
+        Args:
+            node SystemMessageNode: The system message node being visited.
+        Returns:
+            None: This method does not return any value.
+        """
         raise SkipNode
 
     def unknown_visit(self, node):
+        """
+        This method is intended to handle the visitation of an abstract syntax tree node, but it currently does nothing.
+        """
         # node_type = node.__class__.__name__
         # self.output.append(f"<!-- Unsupported RST element: {node_type} -->")
         pass
@@ -787,7 +1108,9 @@ class MarkdownTranslator(NodeVisitor):
 
 
 class MarkdownWriter(Writer):
-    """Writer for converting reStructuredText to GitHub Flavored Markdown."""
+    """
+    Writer for converting reStructuredText to GitHub Flavored Markdown.
+    """
 
     def __init__(self):
         super().__init__()
@@ -800,7 +1123,13 @@ class MarkdownWriter(Writer):
 
 
 def convert_rst_to_md(rst_content: str) -> str:
-    """Convert reStructuredText to GitHub Flavored Markdown."""
+    """
+    Convert reStructuredText to GitHub Flavored Markdown.
+    Args:
+        rst_content str: The reStructuredText content to be converted.
+    Returns:
+        str: The converted GitHub Flavored Markdown content.
+    """
     parts = publish_parts(
         source=rst_content,
         writer=MarkdownWriter(),
@@ -810,7 +1139,12 @@ def convert_rst_to_md(rst_content: str) -> str:
 
 
 def main():
-    """Run the CLI"""
+    """
+    Run the CLI
+    Args:
+        input str: Input RST file (default: stdin)
+        output str: Output Markdown file (default: stdout)
+    """
     parser = argparse.ArgumentParser(
         description="Convert reStructuredText to GitHub Flavored Markdown"
     )
