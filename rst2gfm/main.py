@@ -802,7 +802,13 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_admonition(self, node):
-        """Generic handler for admonition nodes."""
+        """
+        This method is a generic handler for admonition nodes. It processes the node to append a formatted string to the output list, including the type of admonition in bold.
+        Args:
+            node object: The admonition node to be processed.
+        Returns:
+            None: The method does not return anything. It appends a formatted string to the `self.output` list.
+        """
         self.output.append("\n> ")
 
         # Get admonition type from node class
