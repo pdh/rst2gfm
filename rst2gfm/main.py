@@ -1072,6 +1072,9 @@ class MarkdownTranslator(NodeVisitor):
             raise SkipNode
 
     def visit_substitution_definition(self, node):
+        """
+        This method is called when visiting a substitution definition node. It raises a SkipNode exception to indicate that the node should be skipped.
+        """
         raise SkipNode
 
     def visit_comment(self, node):
