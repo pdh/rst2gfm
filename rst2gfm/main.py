@@ -135,7 +135,11 @@ class MarkdownTranslator(NodeVisitor):
                     self.output.append(f"[{ref_id}]: {self.refs_map[refname]}\n")
 
     def visit_section(self, node):
-        """visit section"""
+        """
+        This method is used to visit a section, increasing the section level.
+        Args:
+            node Any: The section node to visit.
+        """
         self.section_level += 1
 
     def depart_section(self, node):
