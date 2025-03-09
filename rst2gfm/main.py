@@ -529,6 +529,11 @@ class MarkdownTranslator(NodeVisitor):
             self._convert_to_markdown_table()
 
     def _convert_to_markdown_table(self):
+        """
+        Converts table data into a markdown formatted table.
+        Returns:
+            None: The method does not return any value.
+        """
         # Process table data into markdown table
         col_count = max(len(row) for row in self.table_data)
 
