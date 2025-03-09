@@ -696,6 +696,11 @@ class MarkdownTranslator(NodeVisitor):
         self.entry_text = None
 
     def visit_transition(self, node):
+        """
+        This method is responsible for handling the transition of a node in the tree. It appends a separator to the output list.
+        Params:
+            node object: The node object representing the current node in the tree.
+        """
         self.output.append("\n---\n\n")
 
     def depart_transition(self, node):
