@@ -954,6 +954,9 @@ class MarkdownTranslator(NodeVisitor):
         self.footnote_label_seen = False
 
     def depart_footnote(self, node):
+        """
+        Resets the footnote flag and appends a newline to the output.
+        """
         self.in_footnote = False
         self.output.append("\n\n")
 
