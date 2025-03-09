@@ -891,6 +891,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_tip(self, node):
+        """
+        Adds a formatted tip to the output list.
+        Yields:
+            None: This function does not yield any value.
+        """
         self.output.append("\n> **Tip:** ")
 
     def depart_tip(self, node):
