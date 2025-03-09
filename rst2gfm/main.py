@@ -880,6 +880,11 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_danger(self, node):
+        """
+        This method is used to add a danger warning to the output.
+        Args:
+            node Node: The node to be processed.
+        """
         self.output.append("\n> **Danger:** ")
 
     def depart_danger(self, node):
