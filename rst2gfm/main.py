@@ -1043,6 +1043,11 @@ class MarkdownTranslator(NodeVisitor):
 
     def visit_target(self, node):
         if "refid" in node:
+            """
+            Visits a target node and processes it based on whether it is an anchor target or a reference definition.
+            Args:
+                node dict: The target node to visit.
+            """
             # This is an anchor target
             anchor = self._make_anchor(node["refid"])
             self.output.append(f'<a id="{anchor}"></a>')
