@@ -1014,7 +1014,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n$$\n")
 
     def visit_displaymath(self, node):
-        """Handles Sphinx displaymath node."""
+        """
+        Handles Sphinx displaymath node.
+        Args:
+            node Node: The Sphinx displaymath node to process.
+        Returns:
+            None: None
+        """
         self.output.append("\n$$\n")
         if node.get("nowrap", False):
             # No wrapping - output as is
