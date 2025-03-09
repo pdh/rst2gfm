@@ -508,14 +508,14 @@ class MarkdownTranslator(NodeVisitor):
             self.table_has_header = True
 
     def depart_table(self, node):
+        """
+        This method processes the table data and converts it to either GitHub Markdown or HTML based on the complexity of the table spans.
+        Args:
+            node object: The node containing the table data to be processed.
+        Returns:
+            None: No value is returned. The method modifies the table data directly.
+        """
         if not self.table_data:
-            """
-            This method processes the table data and converts it to either GitHub Markdown or HTML based on the complexity of the table spans.
-            Args:
-                node object: The node containing the table data to be processed.
-            Returns:
-                None: No value is returned. The method modifies the table data directly.
-            """
             return
 
         # Process spans and convert to GitHub Markdown or HTML
@@ -768,8 +768,7 @@ class MarkdownTranslator(NodeVisitor):
 
     def depart_term(self, node):
         """
-        Appends '**
-' to the output list.
+        Closes dictionary term, appends '**' to the output list.
         Args:
             node any: The node object being processed.
         """
@@ -1042,12 +1041,12 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n$$\n")
 
     def visit_target(self, node):
+        """
+        Visits a target node and processes it based on whether it is an anchor target or a reference definition.
+        Args:
+            node dict: The target node to visit.
+        """
         if "refid" in node:
-            """
-            Visits a target node and processes it based on whether it is an anchor target or a reference definition.
-            Args:
-                node dict: The target node to visit.
-            """
             # This is an anchor target
             anchor = self._make_anchor(node["refid"])
             self.output.append(f'<a id="{anchor}"></a>')
