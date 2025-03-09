@@ -717,6 +717,14 @@ class MarkdownTranslator(NodeVisitor):
         self.list_type.append("enumerated")
 
     def depart_enumerated_list(self, node):
+        """
+        This method decreases the list depth and appends a newline character to the output, then pops the last item from the list type stack.
+        Params:
+            self object: The instance of the class.
+            node object: The current node being processed.
+        Returns:
+            None: The method does not return any value.
+        """
         self.list_depth -= 1
         self.output.append("\n")
         self.list_type.pop()
