@@ -381,6 +381,12 @@ class MarkdownTranslator(NodeVisitor):
             delattr(self, "list_item_start")
 
     def visit_reference(self, node):
+        """
+        This method is called when a reference node is visited.
+        Args:
+            self object: The instance of the class.
+            node node: The reference node being visited.
+        """
         self.reference_stack.append({"start": len(self.output), "text": node.astext()})
 
         # Determine reference type
