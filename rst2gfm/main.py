@@ -840,6 +840,13 @@ class MarkdownTranslator(NodeVisitor):
         self.output.append("\n\n")
 
     def visit_warning(self, node):
+        """
+        Visits a warning node and appends it to the output list with a formatted warning message.
+        Args:
+            node Node: The warning node to be visited.
+        Returns:
+            None: This method does not return anything.
+        """
         self.output.append(f"\n> **Warning:** \n> {node.astext()}")
 
     def depart_warning(self, node):
